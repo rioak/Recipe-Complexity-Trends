@@ -34,7 +34,6 @@ The above dataframe is a grouped dataframe, grouped by the year the recipe was s
 
 The above graph charts the distribution of the number of steps each recipe has. The graph is right skewed, with majority of recipes having less than 20 steps, while there are a few recipes with upwards of 100 steps.
 
-<iframe src="univariate_EDA.html" width=800 height=600 frameBorder=0></iframe>
 
 <p><b>Bivariate Analysis</b></p>
 
