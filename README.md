@@ -1,4 +1,4 @@
-<img src="https://img.sndimg.com/food/image/upload/w_621,h_349,c_fill,fl_progressive,q_80/v1/img/recipes/20/22/44/AU2lov1lQ8O9BU2Svopb_Thai%20Satay%20Noodles%20202244_final%202.jpg" style="border-radius:90%;"></img>
+<img src="https://img.sndimg.com/food/image/upload/w_621,h_349,c_fill,fl_progressive,q_80/v1/img/recipes/20/22/44/AU2lov1lQ8O9BU2Svopb_Thai%20Satay%20Noodles%20202244_final%202.jpg" style="border-radius:50%;">
 <figcaption>source: food.com</figcaption>
 
 by Rio Aguina-Kang (raguinakang@ucsd.edu) and Judel Ancayan (jancayan@ucsd.edu)
