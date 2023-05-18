@@ -58,7 +58,7 @@ Both missingness analyses were performed using the following dataframe, and the 
 print(average_food[['name','id','minutes','date','rating','user_id']].head().to_markdown(index=False))
 ```
 | name                                 |     id |   minutes | date                |   rating |          user_id |
-|:-------------------------------------|-------:|----------:|:--------------------|---------:|-----------------:|
+|:-------------------------------------|--------|-----------|---------------------|----------|-----------------:|
 | 1 brownies in the world    best ever | 333281 |        40 | 2008-11-19 00:00:00 |        4 | 386585           |
 | 1 in canada chocolate chip cookies   | 453467 |        45 | 2012-01-26 00:00:00 |        5 | 424680           |
 | 412 broccoli casserole               | 306168 |        40 | 2008-12-31 00:00:00 |        5 |  29782           |
