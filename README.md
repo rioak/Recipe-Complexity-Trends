@@ -23,7 +23,7 @@ To be able to perform our exploratory data analysis, we grouped the dataframe by
 ```py
 print(unique_recipe.head()[["submitted","n_steps"]].to_markdown(index=True))
 ```
-<div style="display: flex; align-items: center">
+<center>
 
 |     id | submitted           |   n_steps |
 |:-------|---------------------|----------:|
@@ -33,7 +33,7 @@ print(unique_recipe.head()[["submitted","n_steps"]].to_markdown(index=True))
 | 275030 | 2008-01-01 00:00:00 |        11 |
 | 275032 | 2008-01-01 00:00:00 |         8 |
 
-</div>
+</center>
 
 *Univariate Analysis*
 
@@ -64,7 +64,7 @@ Both missingness analyses were performed using the following dataframe, and the 
 ```py
 print(average_food[["name","id","minutes","date","rating","user_id"]].head().to_markdown(index=False))
 ```
-<div style="display: flex; align-items: center">
+<center>
 
 | name                                 |     id |   minutes | date                |   rating |          user_id |
 |:-------------------------------------|--------|-----------|---------------------|----------|-----------------:|
@@ -74,7 +74,7 @@ print(average_food[["name","id","minutes","date","rating","user_id"]].head().to_
 | 412 broccoli casserole               | 306168 |        40 | 2009-04-13 00:00:00 |        5 |      1.19628e+06 |
 | 412 broccoli casserole               | 306168 |        40 | 2013-08-02 00:00:00 |        5 | 768828           |
 
-</div>
+</center>
 details about this dataframe are provided in the Data Cleaning section
 
 
@@ -82,10 +82,17 @@ details about this dataframe are provided in the Data Cleaning section
 
 In order to analyze the dependency of the minutes column, we performed a permutation test with a significance level of 0.01 and 100 trials. The following hypotheses were used to lead this test:
 
-null hypothesis: the missingness of the ratings column does not depend on the minutes of the recipe
-alternative hypothesis: the missingness of the ratings column does depend on the minutes of the recipe
+- **Null Hypothesis**: the missingness of the ratings column does not depend on the minutes of the recipe
+- **Alternative Hypothesis**: the missingness of the ratings column does depend on the minutes of the recipe
 
-The test statistic for this hypothesis was the difference between the mean minutes of the ratings that are not missing subtracted by the minutes mean of the ratings that are missing. The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
+The test statistic for this hypothesis was the difference between the mean minutes of the ratings that are not missing subtracted by the mean minutes of the ratings that are missing. The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
+
+- **Test Statistic**: Difference in means minutes of ratings
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mtext>mean minutes of the ratings not missing</mtext>
+  <mo>&#x2212;<!-- − --></mo>
+  <mtext>mean minutes of the ratings missing</mtext>
+</math> 
 
 <iframe src="minutes_missing.html" width=600 height=600 frameBorder=0></iframe>
 
@@ -128,7 +135,7 @@ To estimate an increase in recipe complexity between 2008 and 2018, we use a tes
   <mtext>mean number of steps in 2008</mtext>
 </math> 
 
-Since the distribution of recipe steps in 2008 is different from that of 2018, we run a permutation test. In this test, we generate new data by shuffling the "n_steps" column within the data to compute a single test statistic, calculating the differences in random distributions between recipe steps in 2018 and 2008. We do this over the course of 1000 trials, creating a new test statistic and appending it to an array of previous test statistics at each iteration. We also compute an observed test statistic from the original data
+Since the recipe steps in 2008 is a different group from that of 2018, we run a permutation test. In this test, we generate new data by shuffling the "n_steps" column within the data to compute a single test statistic, calculating the differences in random distributions between recipe steps in 2018 and 2008. We do this over the course of 1000 trials, creating a new test statistic and appending it to an array of previous test statistics at each iteration. We also compute an observed test statistic from the original data
 
 Here, we plotted the distribution of test statistics, as well as the obvserved test statistic noted as a red line in the plot below:
 
