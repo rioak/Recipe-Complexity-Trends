@@ -87,7 +87,7 @@ alternative hypothesis: the missingness of the ratings column does depend on the
 
 The test statistic for this hypothesis was the difference between the mean minutes of the ratings that are not missing subtracted by the minutes mean of the ratings that are missing. The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
 
-<iframe src="minutes_missingness.html" width=600 height=600 frameBorder=0></iframe>
+<iframe src="minutes_missing.html" width=600 height=600 frameBorder=0></iframe>
 
 The p-value for this permutation test ends up being 0.08, which results in failing to reject the null hypothesis at a significance of 0.01.
 
@@ -100,7 +100,7 @@ alternative hypothesis: the missingness of the ratings column does depend on the
 
 The test statistic for this hypothesis was the difference between the median date of the ratings that are not missing subtracted by the median date of the ratings that are missing. The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
 
-<iframe src="date_missingness.html" width=600 height=600 frameBorder=0></iframe>
+<iframe src="date_missing.html" width=600 height=600 frameBorder=0></iframe>
 
 The p-value for this permutation test ends up being 0.00, which results in rejecting the null hypothesis at a significance of 0.01.
 
