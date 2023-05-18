@@ -1,4 +1,4 @@
-<img src="https://img.sndimg.com/food/image/upload/w_621,h_349,c_fill,fl_progressive,q_80/v1/img/recipes/20/22/44/AU2lov1lQ8O9BU2Svopb_Thai%20Satay%20Noodles%20202244_final%202.jpg" style="border-radius:50%;">
+<img src="https://img.sndimg.com/food/image/upload/w_621,h_349,c_fill,fl_progressive,q_80/v1/img/recipes/20/22/44/AU2lov1lQ8O9BU2Svopb_Thai%20Satay%20Noodles%20202244_final%202.jpg">
 <figcaption>source: food.com</figcaption>
 
 by Rio Aguina-Kang (raguinakang@ucsd.edu) and Judel Ancayan (jancayan@ucsd.edu)
@@ -23,7 +23,6 @@ To be able to perform our exploratory data analysis, we grouped the dataframe by
 ```py
 print(unique_recipe.head()[["submitted","n_steps"]].to_markdown(index=True))
 ```
-<center>
 
 |     id | submitted           |   n_steps |
 |:-------|---------------------|----------:|
@@ -33,18 +32,17 @@ print(unique_recipe.head()[["submitted","n_steps"]].to_markdown(index=True))
 | 275030 | 2008-01-01 00:00:00 |        11 |
 | 275032 | 2008-01-01 00:00:00 |         8 |
 
-</center>
 
 *Univariate Analysis*
 
-<iframe src="univariate_EDA.html" width=600 height=600 frameBorder=0></iframe>
+<iframe src="univariate_EDA.html" width=800 height=600 frameBorder=0></iframe>
 
 The above graph charts the distribution of the number of steps each recipe has. The graph is right skewed, with nearly 90% of recipes requiring less than 20 steps.
 
 
 *Bivariate Analysis*
 
-<iframe src="bivariate_EDA.html" width=600 height=600 frameBorder=0></iframe>
+<iframe src="bivariate_EDA.html" width=800 height=600 frameBorder=0></iframe>
 
 This line chart highlights the observed relationship between the number of steps in a recipe and the year it was submitted. The plot displays a clear positive trend upwards from 2008 until 2016, where there is a drop from approximately 12.7 steps to 12 steps, but returns to an increasing relationship and rises past the original 2015 year average of ~12.7 steps to ~13.6 steps and beyond until 2018. These observations suggest a positive correlation between the two, showcasing that as the year increases, so does the average number of steps per recipe.
 
@@ -64,7 +62,6 @@ Both missingness analyses were performed using the following dataframe, and the 
 ```py
 print(average_food[["name","id","minutes","date","rating","user_id"]].head().to_markdown(index=False))
 ```
-<center>
 
 | name                                 |     id |   minutes | date                |   rating |          user_id |
 |:-------------------------------------|--------|-----------|---------------------|----------|-----------------:|
@@ -74,7 +71,6 @@ print(average_food[["name","id","minutes","date","rating","user_id"]].head().to_
 | 412 broccoli casserole               | 306168 |        40 | 2009-04-13 00:00:00 |        5 |      1.19628e+06 |
 | 412 broccoli casserole               | 306168 |        40 | 2013-08-02 00:00:00 |        5 | 768828           |
 
-</center>
 details about this dataframe are provided in the Data Cleaning section
 
 
@@ -85,7 +81,7 @@ In order to analyze the dependency of the minutes column, we performed a permuta
 - **Null Hypothesis**: the missingness of the ratings column does not depend on the minutes of the recipe
 - **Alternative Hypothesis**: the missingness of the ratings column does depend on the minutes of the recipe
 
-The test statistic for this hypothesis was the difference between the mean minutes of the ratings that are not missing subtracted by the mean minutes of the ratings that are missing. The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
+The test statistic for this hypothesis was the absolute difference between the mean minutes of the ratings that are not missing subtracted by the mean minutes of the ratings that are missing. This is because if there is a significant difference between the two means, it would imply a relation between the value of the "minutes" column and the missingness of the "rating" column.
 
 - **Test Statistic**: Difference in means minutes of ratings
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
@@ -94,7 +90,10 @@ The test statistic for this hypothesis was the difference between the mean minut
   <mtext>mean minutes of the ratings missing</mtext>
 </math> 
 
-<iframe src="minutes_missing.html" width=600 height=600 frameBorder=0></iframe>
+ The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
+
+
+<iframe src="minutes_missing.html" width=800 height=600 frameBorder=0></iframe>
 
 The p-value for this permutation test ends up being 0.08, which results in failing to reject the null hypothesis at a significance of 0.01.
 
@@ -102,12 +101,21 @@ The p-value for this permutation test ends up being 0.08, which results in faili
 
 In order to analyze the dependency of the date column, we performed a permutation test with a significance level of 0.01 and 100 trials. The following hypotheses were used to lead this test:
 
-null hypothesis: the missingness of the ratings column does not depend on the date of the interaction
-alternative hypothesis: the missingness of the ratings column does depend on the date of the interaction
+- **Null Hypothesis**: the missingness of the ratings column does not depend on the date of the interaction
+- **Alternative Hypothesis**: the missingness of the ratings column does depend on the date of the interaction
 
-The test statistic for this hypothesis was the difference between the median date of the ratings that are not missing subtracted by the median date of the ratings that are missing. The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
+The test statistic for this hypothesis was the difference between the median date of the ratings that are not missing subtracted by the median date of the ratings that are missing. This is because if there is a significant difference between the two medians, it would imply a relation between the value of the "date" column and the missingness of the "rating" column.
 
-<iframe src="date_missing.html" width=600 height=600 frameBorder=0></iframe>
+- **Test Statistic**: Difference in median dates of ratings
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mtext>median dates of the ratings not missing</mtext>
+  <mo>&#x2212;<!-- − --></mo>
+  <mtext>median dates of the ratings missing</mtext>
+</math> 
+
+The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
+
+<iframe src="date_missing.html" width=800 height=600 frameBorder=0></iframe>
 
 The p-value for this permutation test ends up being 0.00, which results in rejecting the null hypothesis at a significance of 0.01.
 
@@ -139,7 +147,7 @@ Since the recipe steps in 2008 is a different group from that of 2018, we run a 
 
 Here, we plotted the distribution of test statistics, as well as the obvserved test statistic noted as a red line in the plot below:
 
-<iframe src="hypothesis_test.html" width=600 height=600 frameBorder=0></iframe>
+<iframe src="hypothesis_test.html" width=800 height=600 frameBorder=0></iframe>
 
 Using the array of test statistics, we calculated the p-value by averaging the number of test statistics greater than our observed value, resulting in a p-value of 0.
 
