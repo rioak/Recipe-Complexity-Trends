@@ -131,7 +131,7 @@ While the missingness of the rating column does not seem to depend on the minute
 
 <img src="https://i.gifer.com/1PQg.gif">
 
-To answer the question of whether or not online recipes have shown have become my complex over the last 10 years, we define our null and alternative hypotheses as such:
+To answer the question of whether or not online recipes have become more complex over the last 10 years, we define our null and alternative hypotheses as such:
 
 - **Null Hypothesis**: The average number of steps in 2018 is *the same* as in 2008, and any difference is a result of random chance
 
@@ -146,16 +146,18 @@ To estimate an increase in recipe complexity between 2008 and 2018, we use a tes
   <mtext>mean number of steps in 2008</mtext>
 </math> 
 
-Since the recipe steps in 2008 is a different group from that of 2018, we run a permutation test. In this test, we generate new data by shuffling the "n_steps" column within the data to compute a single test statistic, calculating the differences in random distributions between recipe steps in 2018 and 2008. We do this over the course of 1000 trials, creating a new test statistic and appending it to an array of previous test statistics at each iteration. We also compute an observed test statistic from the original data
+By using this test statistic, we can measure the increase in the average number of steps directly by computing the difference between 2008 and a decade later, and calculate a p-value using a significance level of 0.05.
+
+Since the recipe steps in 2008 is a different group from that of 2018, we run a permutation test. In this test, we generate new data by shuffling the "n_steps" column within the data to compute a single test statistic, calculating the differences in random distributions between recipe steps in 2018 and 2008. We do this over the course of 1000 trials, creating a new test statistic and appending it to an array of previous test statistics at each iteration. We also compute an observed test statistic from the original data.
 
 Here, we plotted the distribution of test statistics, as well as the obvserved test statistic noted as a red line in the plot below:
 
 <iframe src="hypothesis_test.html" width=800 height=600 frameBorder=0></iframe>
 
-Using the array of test statistics, we calculated the p-value by averaging the number of test statistics greater than our observed value, resulting in a p-value of 0.
+Using the array of test statistics, we calculated the p-value by averaging the number of test statistics greater than our observed value, resulting in a p-value of 0.00.
 
 **Conclusion**
 
-Since the p-value is 0 and lower than the significance level of 0.05, we reject the null hypothesis that the number of steps in 2008 and the number of steps in 2018 come from the same distribution.
+Since the p-value is 0.00 and lower than the significance level of 0.05, we reject the null hypothesis that the number of steps in 2008 and the number of steps in 2018 come from the same distribution.
 
 ---
