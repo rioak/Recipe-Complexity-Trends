@@ -1,4 +1,5 @@
-# Exploring Recipe Complexity Over Time
+<img src="https://img.sndimg.com/food/image/upload/w_621,h_349,c_fill,fl_progressive,q_80/v1/img/recipes/20/22/44/AU2lov1lQ8O9BU2Svopb_Thai%20Satay%20Noodles%20202244_final%202.jpg" style="border-radius:90%;"></img>
+<figcaption>source: food.com</figcaption>
 
 by Rio Aguina-Kang (raguinakang@ucsd.edu) and Judel Ancayan (jancayan@ucsd.edu)
 
@@ -6,17 +7,23 @@ by Rio Aguina-Kang (raguinakang@ucsd.edu) and Judel Ancayan (jancayan@ucsd.edu)
 
 ## Introduction
 
-In this project, we explored the relationship between time and the complexity of recipes. Using a dataset from <a href='https://www.food.com/'>food.com</a>, we gain access to 231,536 observations across 17 distinct features. To effectively evaluate recipe complexity, we utilized a key feature called "n_steps," which represents the number of steps required to prepare a recipe. Additionally, to investigate temporal trends, we considered the "submitted" date column, which encompasses recipe submissions spanning from 2008 to 2018. Finally, we utilized the "id" column to identify specific recipes within the dataset.
+In this project, we explored the relationship between time and the complexity of recipes. Using a dataset from <a href="https://www.food.com/">food.com</a>, we gain access to 231,536 observations across 17 distinct features. To effectively evaluate recipe complexity, we utilized a key feature called "n_steps," which represents the number of steps required to prepare a recipe. Additionally, to investigate temporal trends, we considered the "submitted" date column, which encompasses recipe submissions spanning from 2008 to 2018. Finally, we utilized the "id" column to identify unique recipes within the dataset.
 
 ---
 
 ## Cleaning and Exploratory Data Analysis
 **Data Cleaning**
-To begin, we were provided with two different csv files, a csv containing recipe data and a csv containing interaction(comments and ratings) data. We imported both of these csvs as dataframes, and left merged the recipe dataframe and the interactions one on the recipe id columns. With the new dataframe, we changed the rating column so that all of the "0" values were now nan values, because these interactions represent comments, and have no rating. Following this, we added a column to the dataframe called 'average rating', which represented the average rating out of 5 that the recipe recived. Additionally, we typecasted the 'submitted' column(which is the date the recipe was submitted) and the 'date' column(which is when the comment was submitted) into the pandas datetime data type. To finish up cleaning the dataframe, we grouped the dataframe by id, and used the 'max' aggregate to preserve data per recipe, as well as ensure there were no duplicate recipes in the dataframe. The first few rows of the cleaned dataframe with all the listed changes is shown here(please note that the dataframe shown here is different from the dataframe used in the assessment of missingness. The dataframe used in that section is this dataframe before it was grouped by id, in order to preserve all of the separate interactions by recipe):
+
+To begin, we utilized two different csv files: a csv containing recipe data and a csv containing interaction (comments and ratings) data. We imported both of these csvs as dataframes, and merged the two using a left merge on recipe data. With the merged dataframe, we changed the rating column such that all of the "0" values became NaN values due to the nature of these values representing comments without ratings. Following this, we added a column to the dataframe called "average rating", which represented the average rating from 1 to 5 that the recipe recived. Additionally, we typecasted the "submitted" column (which is the date the recipe was submitted) and the "date" column (which is when the comment was submitted) from string type columns into pandas datetime columns. 
+
+**Exploratory Data Analysis**
+
+To be able to perform our exploratory data analysis, we grouped the dataframe by id, and used the "max" aggregate to preserve data per recipe, as well as ensure there were no duplicate recipes in the dataframe. The first few rows of the cleaned dataframe with all the listed changes is shown here (please note that the dataframe shown here is different from the dataframe used in the assessment of missingness. The dataframe used in that section is this dataframe before it was grouped by id, in order to preserve all of the separate interactions by recipe):
 
 ```py
-print(unique_recipe.head()[['submitted','n_steps']].to_markdown(index=True))
+print(unique_recipe.head()[["submitted","n_steps"]].to_markdown(index=True))
 ```
+<div style="display: flex; align-items: center">
 
 |     id | submitted           |   n_steps |
 |:-------|---------------------|----------:|
@@ -26,20 +33,20 @@ print(unique_recipe.head()[['submitted','n_steps']].to_markdown(index=True))
 | 275030 | 2008-01-01 00:00:00 |        11 |
 | 275032 | 2008-01-01 00:00:00 |         8 |
 
-The above dataframe is a grouped dataframe, grouped by the year the recipe was submitted, with the aggregate function 'mean', displaying the mean of the columns that are able to have means.
+</div>
 
-**Univariate Analysis**
+*Univariate Analysis*
 
-<iframe src="univariate_EDA.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="univariate_EDA.html" width=600 height=600 frameBorder=0></iframe>
 
-The above graph charts the distribution of the number of steps each recipe has. The graph is right skewed, with majority of recipes having less than 20 steps, while there are a few recipes with upwards of 100 steps.
+The above graph charts the distribution of the number of steps each recipe has. The graph is right skewed, with nearly 90% of recipes requiring less than 20 steps.
 
 
-**Bivariate Analysis**
+*Bivariate Analysis*
 
-<iframe src="bivariate_EDA.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="bivariate_EDA.html" width=600 height=600 frameBorder=0></iframe>
 
-This line chart highlights the observed relation between the number of steps in a recipe and the year it was submitted. The graph shows a positive relation between the two (ignoring the drop in the year 2016, which could be considered an outlier), which suggests a positive correlation between the two, meaning that as the year increases, so does the average number of steps per recipe.
+This line chart highlights the observed relationship between the number of steps in a recipe and the year it was submitted. The plot displays a clear positive trend upwards from 2008 until 2016, where there is a drop from approximately 12.7 steps to 12 steps, but returns to an increasing relationship and rises past the original 2015 year average of ~12.7 steps to ~13.6 steps and beyond until 2018. These observations suggest a positive correlation between the two, showcasing that as the year increases, so does the average number of steps per recipe.
 
 ---
 
@@ -47,16 +54,17 @@ This line chart highlights the observed relation between the number of steps in 
 
 **NMAR Analysis**
 
-We believe that the 'Ratings" column in the dataframe is NMAR. This is because all of the missing values in that column were intentionally made missing if the original value was zero, as ratings can only be between numbers 1 and 5.
+We believe that the "Ratings" column in the merged dataframe between recipe data and interaction data is NMAR. This is because all of the missing values in that column were intentionally made missing if the original value was zero, as ratings can only be between numbers 1 and 5.
 
 
 **Missingness Dependency**
 
-Both missingness analyses were performed using the following dataframe, and the missingness of the 'rating' column:
+Both missingness analyses were performed using the following dataframe, and the missingness of the "rating" column:
 
 ```py
-print(average_food[['name','id','minutes','date','rating','user_id']].head().to_markdown(index=False))
+print(average_food[["name","id","minutes","date","rating","user_id"]].head().to_markdown(index=False))
 ```
+<div style="display: flex; align-items: center">
 
 | name                                 |     id |   minutes | date                |   rating |          user_id |
 |:-------------------------------------|--------|-----------|---------------------|----------|-----------------:|
@@ -66,10 +74,11 @@ print(average_food[['name','id','minutes','date','rating','user_id']].head().to_
 | 412 broccoli casserole               | 306168 |        40 | 2009-04-13 00:00:00 |        5 |      1.19628e+06 |
 | 412 broccoli casserole               | 306168 |        40 | 2013-08-02 00:00:00 |        5 | 768828           |
 
+</div>
 details about this dataframe are provided in the Data Cleaning section
 
 
-**Analyzing the dependency of the missingness of the 'rating' column and the 'minutes' column**
+**Analyzing the dependency of the missingness of the "rating" column and the "minutes" column**
 
 In order to analyze the dependency of the minutes column, we performed a permutation test with a significance level of 0.01 and 100 trials. The following hypotheses were used to lead this test:
 
@@ -78,11 +87,11 @@ alternative hypothesis: the missingness of the ratings column does depend on the
 
 The test statistic for this hypothesis was the difference between the mean minutes of the ratings that are not missing subtracted by the minutes mean of the ratings that are missing. The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
 
-<iframe src="minutes_missingness.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="minutes_missingness.html" width=600 height=600 frameBorder=0></iframe>
 
 The p-value for this permutation test ends up being 0.08, which results in failing to reject the null hypothesis at a significance of 0.01.
 
-**Analyzing the dependency of the missingness of the 'rating' column and the 'date' column**
+**Analyzing the dependency of the missingness of the "rating" column and the "date" column**
 
 In order to analyze the dependency of the date column, we performed a permutation test with a significance level of 0.01 and 100 trials. The following hypotheses were used to lead this test:
 
@@ -91,7 +100,7 @@ alternative hypothesis: the missingness of the ratings column does depend on the
 
 The test statistic for this hypothesis was the difference between the median date of the ratings that are not missing subtracted by the median date of the ratings that are missing. The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
 
-<iframe src="date_missingness.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="date_missingness.html" width=600 height=600 frameBorder=0></iframe>
 
 The p-value for this permutation test ends up being 0.00, which results in rejecting the null hypothesis at a significance of 0.01.
 
@@ -123,7 +132,7 @@ Since the distribution of recipe steps in 2008 is different from that of 2018, w
 
 Here, we plotted the distribution of test statistics, as well as the obvserved test statistic noted as a red line in the plot below:
 
-<iframe src="hypothesis_test.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="hypothesis_test.html" width=600 height=600 frameBorder=0></iframe>
 
 Using the array of test statistics, we calculated the p-value by averaging the number of test statistics greater than our observed value, resulting in a p-value of 0.
 
