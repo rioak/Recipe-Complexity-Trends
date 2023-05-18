@@ -45,6 +45,58 @@ This line chart highlights the observed relation between the number of steps in 
 
 ## Assessment of Missingness
 
+**NMAR Analysis**
+
+We believe that the 'Ratings" column in the dataframe is NMAR. This is because all of the missing values in that column were intentionally made missing if the original value was zero, as ratings can only be between numbers 1 and 5.
+
+
+**Missingness Dependency**
+
+Both missingness analyses were performed using the following dataframe, and the missingness of the 'rating' column:
+
+```py
+print(average_food[['name','id','minutes','date','rating','user_id']].head().to_markdown(index=False))
+```
+| name                                 |     id |   minutes | date                |   rating |          user_id |
+|:-------------------------------------|-------:|----------:|:--------------------|---------:|-----------------:|
+| 1 brownies in the world    best ever | 333281 |        40 | 2008-11-19 00:00:00 |        4 | 386585           |
+| 1 in canada chocolate chip cookies   | 453467 |        45 | 2012-01-26 00:00:00 |        5 | 424680           |
+| 412 broccoli casserole               | 306168 |        40 | 2008-12-31 00:00:00 |        5 |  29782           |
+| 412 broccoli casserole               | 306168 |        40 | 2009-04-13 00:00:00 |        5 |      1.19628e+06 |
+| 412 broccoli casserole               | 306168 |        40 | 2013-08-02 00:00:00 |        5 | 768828           |
+
+details about this dataframe are provided in the Data Cleaning section
+
+
+**Analyzing the dependency of the missingness of the 'rating' column and the 'minutes' column**
+
+In order to analyze the dependency of the minutes column, we performed a permutation test with a significance level of 0.01 and 100 trials. The following hypotheses were used to lead this test:
+
+null hypothesis: the missingness of the ratings column does not depend on the minutes of the recipe
+alternative hypothesis: the missingness of the ratings column does depend on the minutes of the recipe
+
+The test statistic for this hypothesis was the difference between the mean minutes of the ratings that are not missing subtracted by the minutes mean of the ratings that are missing. The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
+
+<iframe src="minutes_missingness_test.html" width=800 height=600 frameBorder=0></iframe>
+
+The p-value for this permutation test ends up being 0.08, which results in failing to reject the null hypothesis at a significance of 0.01.
+
+**Analyzing the dependency of the missingness of the 'rating' column and the 'date' column**
+
+In order to analyze the dependency of the date column, we performed a permutation test with a significance level of 0.01 and 100 trials. The following hypotheses were used to lead this test:
+
+null hypothesis: the missingness of the ratings column does not depend on the date of the interaction
+alternative hypothesis: the missingness of the ratings column does depend on the date of the interaction
+
+The test statistic for this hypothesis was the difference between the median date of the ratings that are not missing subtracted by the median date of the ratings that are missing. The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
+
+<iframe src="date_missingness_test.html" width=800 height=600 frameBorder=0></iframe>
+
+The p-value for this permutation test ends up being 0.00, which results in rejecting the null hypothesis at a significance of 0.01.
+
+**Conclusion**
+While the missingness of the rating column does not seem to depend on the minutes column, it does seem to depend on the date column, meaning that the missingness of the rating column to potentially being MAR
+
 
 
 ---
