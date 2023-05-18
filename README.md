@@ -1,5 +1,5 @@
 <img src="https://img.sndimg.com/food/image/upload/w_621,h_349,c_fill,fl_progressive,q_80/v1/img/recipes/20/22/44/AU2lov1lQ8O9BU2Svopb_Thai%20Satay%20Noodles%20202244_final%202.jpg">
-<figcaption>source: food.com</figcaption>
+<figcaption style="opacity: 0.5;">source: food.com</figcaption>
 
 by Rio Aguina-Kang (raguinakang@ucsd.edu) and Judel Ancayan (jancayan@ucsd.edu)
 
@@ -52,7 +52,7 @@ This line chart highlights the observed relationship between the number of steps
 
 **NMAR Analysis**
 
-We believe that the "Ratings" column in the merged dataframe between recipe data and interaction data is NMAR. This is because all of the missing values in that column were intentionally made missing if the original value was zero, as ratings can only be between numbers 1 and 5.
+We believe that the "Ratings" column in the merged dataframe between recipe data and interaction data is Not Missing At Random (NMAR). This is because all of the missing values in that column were intentionally made missing if the original value was zero, as ratings can only be between numbers 1 and 5.
 
 
 **Missingness Dependency**
@@ -81,7 +81,7 @@ In order to analyze the dependency of the minutes column, we performed a permuta
 - **Null Hypothesis**: the missingness of the ratings column does not depend on the minutes of the recipe
 - **Alternative Hypothesis**: the missingness of the ratings column does depend on the minutes of the recipe
 
-The test statistic for this hypothesis was the absolute difference between the mean minutes of the ratings that are not missing subtracted by the mean minutes of the ratings that are missing. This is because if there is a significant difference between the two means, it would imply a relation between the value of the "minutes" column and the missingness of the "rating" column.
+The test statistic for this hypothesis was the absolute difference between the mean minutes of the ratings that are not missing subtracted by the mean minutes of the ratings that are missing. This is because if there is a significant difference between the two means, it would imply a relationship between the value of the "minutes" column and the missingness of the "rating" column.
 
 - **Test Statistic**: Difference in means minutes of ratings
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
@@ -120,7 +120,8 @@ The findings of the permutation test are summarized by the following graph, wher
 The p-value for this permutation test ends up being 0.00, which results in rejecting the null hypothesis at a significance of 0.01.
 
 **Conclusion**
-While the missingness of the rating column does not seem to depend on the minutes column, it does seem to depend on the date column, meaning that the missingness of the rating column to potentially being MAR
+
+While the missingness of the rating column does not seem to depend on the minutes column, it does seem to depend on the date column. This suggests the missingness of the rating column is potentially Missing At Random (MAR).
 
 
 
@@ -128,7 +129,9 @@ While the missingness of the rating column does not seem to depend on the minute
 
 ## Hypothesis Testing
 
-To answer the question of whether or not recipes have shown an increase in complexity over the last 10 years, we define our null and alternative hypotheses as such.
+<img src="https://i.gifer.com/1PQg.gif">
+
+To answer the question of whether or not online recipes have shown have become my complex over the last 10 years, we define our null and alternative hypotheses as such:
 
 - **Null Hypothesis**: The average number of steps in 2018 is *the same* as in 2008, and any difference is a result of random chance
 
@@ -150,6 +153,8 @@ Here, we plotted the distribution of test statistics, as well as the obvserved t
 <iframe src="hypothesis_test.html" width=800 height=600 frameBorder=0></iframe>
 
 Using the array of test statistics, we calculated the p-value by averaging the number of test statistics greater than our observed value, resulting in a p-value of 0.
+
+**Conclusion**
 
 Since the p-value is 0 and lower than the significance level of 0.05, we reject the null hypothesis that the number of steps in 2008 and the number of steps in 2018 come from the same distribution.
 
