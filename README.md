@@ -11,11 +11,11 @@ In this project, we explored the relationship between time and the complexity of
 ---
 
 ## Cleaning and EDA
-<h2>Data Cleaning</h2>
+<p>Data Cleaning</p>
 To begin, we were provided with two different csv files, a csv containing recipe data and a csv containing interaction(comments and ratings) data. We imported both of these csvs as dataframes, and left merged the recipe dataframe and the interactions one on the recipe id columns. With the new dataframe, we changed the rating column so that all of the "0" values were now nan values, because these interactions represent comments, and have no rating. Following this, we added a column to the dataframe called 'average rating', which represented the average rating out of 5 that the recipe recived. Additionally, we typecasted the 'submitted' column(which is the date the recipe was submitted) and the 'date' column(which is when the comment was submitted) into the pandas datetime data type. To finish up cleaning the dataframe, we grouped the dataframe by id, and used the 'max' aggregate to preserve data per recipe, as well as ensure there were no duplicate recipes in the dataframe. The first few rows of the cleaned dataframe with all the listed changes is shown here(please note that the dataframe shown here is different from the dataframe used in the assessment of missingness. The dataframe used in that section is this dataframe before it was grouped by id, in order to preserve all of the separate interactions by recipe):
 
 ```py
-print(grouped_by_year.to_markdown(index=True))
+print(unique_recipe.head()[['submitted','n_steps']].to_markdown(index=True))
 ```
 
 |     id | submitted           |   n_steps |
