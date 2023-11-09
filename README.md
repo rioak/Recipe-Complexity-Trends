@@ -5,6 +5,8 @@ by Rio Aguina-Kang (raguinakang@ucsd.edu) and Judel Ancayan (jancayan@ucsd.edu)
 
 ---
 
+Note: This is a preliminary EDA to our machine learning project on predicting recipe trends linked <a href="https://rioak.github.io/Predicting-Recipe-Trends/">here</a>.
+
 ## Introduction
 
 In this project, we explored the relationship between time and the complexity of recipes. Using a dataset from <a href="https://www.food.com/">food.com</a>, we gain access to 231,536 observations across 17 distinct features. To effectively evaluate recipe complexity, we utilized a key feature called "n_steps," which represents the number of steps required to prepare a recipe. Additionally, to investigate temporal trends, we considered the "submitted" date column, which encompasses recipe submissions spanning from 2008 to 2018. Finally, we utilized the "id" column to identify unique recipes within the dataset.
@@ -35,14 +37,14 @@ print(unique_recipe.head()[["submitted","n_steps"]].to_markdown(index=True))
 
 *Univariate Analysis*
 
-<iframe src="univariate_EDA.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="univariate_EDA.html" width=600 height=400 frameBorder=0></iframe>
 
 The above graph charts the distribution of the number of steps each recipe has. The graph is right skewed, with nearly 90% of recipes requiring less than 20 steps.
 
 
 *Bivariate Analysis*
 
-<iframe src="bivariate_EDA.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="bivariate_EDA.html" width=600 height=400 frameBorder=0></iframe>
 
 This line chart highlights the observed relationship between the number of steps in a recipe and the year it was submitted. The plot displays a clear positive trend upwards from 2008 until 2016, where there is a drop from approximately 12.7 steps to 12 steps, but returns to an increasing relationship and rises past the original 2015 year average of ~12.7 steps to ~13.6 steps and beyond until 2018. These observations suggest a positive correlation between the two, showcasing that as the year increases, so does the average number of steps per recipe.
 
@@ -93,7 +95,7 @@ The test statistic for this hypothesis was the absolute difference between the m
  The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
 
 
-<iframe src="minutes_missing.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="minutes_missing.html" width=600 height=400 frameBorder=0></iframe>
 
 The p-value for this permutation test ends up being 0.08, which results in failing to reject the null hypothesis at a significance of 0.01.
 
