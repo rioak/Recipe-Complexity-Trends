@@ -26,13 +26,43 @@ To be able to perform our exploratory data analysis, we grouped the dataframe by
 print(unique_recipe.head()[["submitted","n_steps"]].to_markdown(index=True))
 ```
 
-|     id | submitted           |   n_steps |
-|:-------|---------------------|----------:|
-| 275022 | 2008-01-01 00:00:00 |        11 |
-| 275024 | 2008-01-01 00:00:00 |         6 |
-| 275026 | 2008-01-01 00:00:00 |         7 |
-| 275030 | 2008-01-01 00:00:00 |        11 |
-| 275032 | 2008-01-01 00:00:00 |         8 |
+<table style="margin-left: auto;
+  margin-right: auto;">
+  <thead>
+    <tr>
+      <th style="text-align: left">id</th>
+      <th>submitted</th>
+      <th style="text-align: right">n_steps</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">275022</td>
+      <td>2008-01-01 00:00:00</td>
+      <td style="text-align: right">11</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">275024</td>
+      <td>2008-01-01 00:00:00</td>
+      <td style="text-align: right">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">275026</td>
+      <td>2008-01-01 00:00:00</td>
+      <td style="text-align: right">7</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">275030</td>
+      <td>2008-01-01 00:00:00</td>
+      <td style="text-align: right">11</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">275032</td>
+      <td>2008-01-01 00:00:00</td>
+      <td style="text-align: right">8</td>
+    </tr>
+  </tbody>
+</table>
 
 
 *Univariate Analysis*
@@ -131,7 +161,9 @@ While the missingness of the rating column does not seem to depend on the minute
 
 ## Hypothesis Testing
 
-<img src="https://i.gifer.com/1PQg.gif">
+<img src="https://i.gifer.com/1PQg.gif" style="display: block;
+  margin-left: auto;
+  margin-right: auto;">
 
 To answer the question of whether or not online recipes have become more complex over the last 10 years, we define our null and alternative hypotheses as such:
 
@@ -154,7 +186,7 @@ Since the recipe steps in 2008 is a different group from that of 2018, we run a 
 
 Here, we plotted the distribution of test statistics, as well as the obvserved test statistic noted as a red line in the plot below:
 
-<iframe src="hypothesis_test.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="hypothesis_test.html" width=600 height=400 frameBorder=0></iframe>
 
 Using the array of test statistics, we calculated the p-value by averaging the number of test statistics greater than our observed value, resulting in a p-value of 0.00.
 
