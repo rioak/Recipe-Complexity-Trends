@@ -147,7 +147,7 @@ The test statistic for this hypothesis was the difference between the median dat
 
 The findings of the permutation test are summarized by the following graph, where the red line represents the observed test statistic:
 
-<iframe src="date_missing.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="date_missing.html" width=600 height=400 frameBorder=0></iframe>
 
 The p-value for this permutation test ends up being 0.00, which results in rejecting the null hypothesis at a significance of 0.01.
 
